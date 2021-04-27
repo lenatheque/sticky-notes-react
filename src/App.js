@@ -1,45 +1,43 @@
-import React from "react";
+import React, { Component } from "react";
 import Header from "./Header.js";
 import NotesList from "./NotesList.js";
 
-const App = () => (
-  <div>
-    <Header />
-    <NotesList />
-  </div>
-);
+/* This container component manages all of the state 
+for this application, delegating rendering logic to 
+presentational components. */
+
+class App extends Component {
+  state = {
+    notes: [
+      {
+        id: 0,
+        title: "eat",
+        description: "reese peanut butter cups",
+        doesMatchSearch: true
+      },
+      {
+        id: 1,
+        title: "sleep",
+        description: "eight hours",
+        doesMatchSearch: true
+      },
+      {
+        id: 2,
+        title: "code",
+        description: "build an awesome ui",
+        doesMatchSearch: true
+      }
+    ],
+    searchText: "search for me"
+  };
+  render() {
+    return (
+      <div>
+        <Header searchText={this.state.searchText} />
+        <NotesList notes={this.state.notes} />
+      </div>
+    );
+  }
+}
 
 export default App;
-
-// const App = () => (
-//   <div>
-//     <header className="app-header">
-//       <h1 className="app-header__title">Super Sticky Notes</h1>
-//       <aside className="app-header__controls">
-//         <button className="add-new">+ New Note</button>
-//         <input
-//           type="text"
-//           placeholder="Type here to search..."
-//           className="search"
-//         />
-//       </aside>
-//     </header>
-//     <ul className="notes-list">
-//       <li className="note">
-//         <input type="text" placeholder="Title" className="note__title" />
-//         <textarea placeholder="Description..." className="note__description" />
-//         <span className="note__delete">X</span>
-//       </li>
-//       <li className="note">
-//         <input type="text" placeholder="Title" className="note__title" />
-//         <textarea placeholder="Description..." className="note__description" />
-//         <span className="note__delete">X</span>
-//       </li>
-//       <li className="note">
-//         <input type="text" placeholder="Title" className="note__title" />
-//         <textarea placeholder="Description..." className="note__description" />
-//         <span className="note__delete">X</span>
-//       </li>
-//     </ul>
-//   </div>
-// );
